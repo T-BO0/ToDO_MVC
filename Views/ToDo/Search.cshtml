@@ -1,0 +1,32 @@
+@model IEnumerable<ToDoCard>
+
+    
+    @if (Model.Count() == 0)
+    {
+
+                <h5 class="text-secondary"> sorry, not found!!</h5>
+    }
+    else
+    {
+        <div class="row border border-primary mt-4">
+            @foreach (var item in Model)
+            {
+                <div class="card col-3 m-5 " >
+                    <div class="card-body d-flex flex-direction: row">
+                        <div>
+                        <h5 class="fw-bold card-title text-secondary">@item.Name</h5>
+                        <h6 class="mt-4card-subtitle mb-2 text-info">@item.Created</h6>
+                        <p class="m-6 card-text text-success">@item.Discription</p>
+                        </div>
+                        <div class="align-self-end">
+                        <form method="post" asp-action="delete" asp-route-id="@item.Id">
+                            <button title="delete" class="btn btn-outline-danger" type="submit"><i class="bi bi-trash2-fill"></i></button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+
